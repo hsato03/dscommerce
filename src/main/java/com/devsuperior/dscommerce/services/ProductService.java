@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,14 @@ public class ProductService {
         entity = repository.save(entity);
 
         return new ProductDTO(entity);
+    }
+
+    public void delete(Long id) {
+        try {
+            repository.deleteById(id);
+        } catch (InputMismatchException e) {
+            System.out.println("Id not found: " + id);
+        }
     }
 
     public static void copyDtoToEntity(ProductDTO dto, Product entity) {
