@@ -15,7 +15,7 @@ public class User {
     private Long id;
     private String name;
 
-    @Column(columnDefinition = "UNIQUE")
+    @Column(unique = true)
     private String email;
     private String phone;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
